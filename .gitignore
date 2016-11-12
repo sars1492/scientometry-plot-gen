@@ -1,0 +1,5 @@
+# Compiled Python
+*.py[co]
+
+# Output images
+*.png

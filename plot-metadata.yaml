@@ -1,0 +1,99 @@
+defaults:
+  format: png
+  resolution: 150 # [dpi]
+  figsize:
+    - 25.4 # width [cm]
+    - 15.5 # height [cm]
+  suptitle_fontsize: 14
+  title_fontsize: 12
+  ticklabel_fontsize: 11
+  axislabel_fontsize: 11
+  legend_fontsize: 11
+  title_y: 1.007
+  barwidth: 0.3
+  barcolors:
+    - 'blue'
+    - 'red'
+  legend:
+    - "Scopus"
+    - "WoS"
+  xlabel: "rok publikovania"
+
+
+# Katedra biológie
+bio-citations:
+  suptitle: "Katedra biológie"
+  title: "Citovanosť článkov publikovaných v období 2000-2016"
+  ylabel: "počet citácií"
+  ymax: 90
+
+bio-publications:
+  suptitle: "Katedra biológie"
+  title: "Vývoj publikačnej činnosti v období 2000-2016"
+  ylabel: "počet publikácií"
+  ymax: 7.5
+
+# Katedra biotechnológií
+biotech-citations:
+  suptitle: "Katedra biotechnológií"
+  title: "Citovanosť článkov publikovaných v období 2000-2016"
+  ylabel: "počet citácií"
+  ymax: 90
+
+biotech-publications:
+  suptitle: "Katedra biotechnológií"
+  title: "Vývoj publikačnej činnosti v období 2000-2016"
+  ylabel: "počet publikácií"
+  ymax: 16.5
+
+# Katedra chémie
+chem-citations:
+  suptitle: "Katedra chémie"
+  title: "Citovanosť článkov publikovaných v období 2000-2016"
+  ylabel: "počet citácií"
+  ymax: 250
+
+chem-publications:
+  suptitle: "Katedra chémie"
+  title: "Vývoj publikačnej činnosti v období 2000-2016"
+  ylabel: "počet publikácií"
+  ymax: 40
+
+# Katedra ekochémie a rádioekológie
+eco-citations:
+  suptitle: "Katedra ekochémie a rádioekológie"
+  title: "Citovanosť článkov publikovaných v období 2000-2016"
+  ylabel: "počet citácií"
+  ymax: 90
+
+eco-publications:
+  suptitle: "Katedra ekochémie a rádioekológie"
+  title: "Vývoj publikačnej činnosti v období 2000-2016"
+  ylabel: "počet publikácií"
+  ymax: 11.8
+
+# Katedra aplikovanej informatiky a matematiky
+inf-citations:
+  suptitle: "Katedra aplikovanej informatiky a matematiky"
+  title: "Citovanosť článkov publikovaných v období 2000-2016"
+  ylabel: "počet citácii"
+  ymax: 10.5
+
+inf-publications:
+  suptitle: "Katedra aplikovanej informatiky a matematiky"
+  title: "Vývoj publikačnej činnosti v období 2000-2016"
+  ylabel: "počet publikácií"
+  ymax: 5
+
+# Fakulta prírodných vied
+all-citations:
+  suptitle: "Fakulta prírodných vied"
+  title: "Citovanosť článkov publikovaných v období 2000-2016"
+  ylabel: "počet citácií"
+  ymax: 320
+
+all-publications:
+  suptitle: "Fakulta prírodných vied"
+  title: "Vývoj publikačnej činnosti v období 2000-2016"
+  ylabel: "počet publikácií"
+  ymax: 67
