@@ -1,0 +1,26 @@
+defaults:
+  format: png
+  resolution: 96 # [dpi]
+  figsize:
+    - 25.4 # width [cm]
+    - 15.5 # height [cm]
+  suptitle_fontsize: 14
+  title_fontsize: 12
+  ticklabel_fontsize: 11
+  axislabel_fontsize: 11
+  legend_fontsize: 11
+  title_y: 1.007
+  barwidth: 0.3
+  barcolors:
+    - 'blue'
+    - 'red'
+  legend:
+    - "Scopus"
+    - "WoS"
+  xlabel: "Year of Publishing"
+
+all-citations:
+  suptitle: "Faculty of Natural Sciences"
+  title: "Citations over 2000-2016"
+  ylabel: "Citation Count"
+  ymax: 320
