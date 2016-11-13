@@ -117,25 +117,25 @@ all-citations:
   ymax: 320
 ```
 
-Key                  | Description
----------------------|----------------------------------------
-`format`             | Format of the output file
-`resolution`         | Output resolution in dpi
-`figsize`            | Dimensions of the output figure (in cm)
-`suptitle_fontsize`  | Font size of the supreme title (in pt)
-`title_fontsize`     | Font size of the plot title (in pt)
-`ticklabel_fontsize` | Font size of the tick labels (in pt)
-`axislabel_fontsize` | Font size of the axis labels (in pt)
-`legend_fontsize`    | Font size of the legend labels (in pt)
-`barwidth`           | Relative width of the bars
-`barcolors`          | Bar colors for individual data sets
-`legend`             | Legend labels for individual data sets
-`suptitle`           | Supreme title of the figure
-`title`              | Plot title
-`title_y`            | Vertical shift of the plot title
-`xlabel`             | Label of the x-axis
-`ylabel`             | Label of the y-axis
-`ymax`               | Maximal value of y-axis.
+Metadata Key | Description
+-------------|------------
+__`format`__ | Output image format
+__`resolution`__ | Output image resolution in DPI
+__`figsize`__ | Physical width and height of the output image in centimeters
+__`suptitle_fontsize`__ | Font size of the supreme title (in points)
+__`title_fontsize`__ | Font size of the plot title (in points)
+__`ticklabel_fontsize`__ | Font size of the tick labels (in points)
+__`axislabel_fontsize`__ | Font size of the axis labels (in points)
+__`legend_fontsize`__ | Font size of the legend labels (in points)
+__`barwidth`__ | Relative width of the bars
+__`barcolors`__ | Bar colors for individual data sets (value order has to match columns in the data file)
+__`legend`__ | Legend labels for individual data sets (value order has to columns in the data file)
+__`suptitle`__ | Supreme title of the figure
+__`title`__ | Title of the plot
+__`title_y`__ | Vertical shift of the plot title (relatively to the plot border)
+__`xlabel`__ | Label of the x-axis
+__`ylabel`__ | Label of the y-axis
+__`ymax`__ | Maximal value of y-axis.
 
 
 ### Data file
