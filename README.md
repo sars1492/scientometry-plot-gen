@@ -111,29 +111,31 @@ defaults:
   xlabel: "Year of Publishing"
 
 all-citations:
-  suptitle: "Faculty of Natural Sciences"
+  suptitle: "UCM, Faculty of Natural Sciences"
   title: "Citations over 2000-2016"
   ylabel: "Citation Count"
   ymax: 320
 ```
 
-* `format` -- Format of the output file
-* `resolution` -- Output resolution in dpi
-* `figsize` -- Dimensions of the output figure (in cm)
-* `suptitle_fontsize` -- Font size of the supreme title (in pt)
-* `title_fontsize` -- Font size of the plot title (in pt)
-* `ticklabel_fontsize` -- Font size of the tick labels (in pt)
-* `axislabel_fontsize` -- Font size of the axis labels (in pt)
-* `legend_fontsize` -- Font size of the legend labels (in pt)
-* `barwidth` -- Relative width of the bars
-* `barcolors` -- Bar colors for individual data sets
-* `legend` -- Legend labels for individual data sets
-* `suptitle` -- Supreme title of the figure
-* `title` -- Plot title
-* `title_y` -- Vertical shift of the plot title (relatively to plot border)
-* `xlabel` -- Label of the x-axis
-* `ylabel` -- Label of the y-axis
-* `ymax` -- Maximal value of y-axis.
+Key                  | Description
+---------------------|----------------------------------------
+`format`             | Format of the output file
+`resolution`         | Output resolution in dpi
+`figsize`            | Dimensions of the output figure (in cm)
+`suptitle_fontsize`  | Font size of the supreme title (in pt)
+`title_fontsize`     | Font size of the plot title (in pt)
+`ticklabel_fontsize` | Font size of the tick labels (in pt)
+`axislabel_fontsize` | Font size of the axis labels (in pt)
+`legend_fontsize`    | Font size of the legend labels (in pt)
+`barwidth`           | Relative width of the bars
+`barcolors`          | Bar colors for individual data sets
+`legend`             | Legend labels for individual data sets
+`suptitle`           | Supreme title of the figure
+`title`              | Plot title
+`title_y`            | Vertical shift of the plot title
+`xlabel`             | Label of the x-axis
+`ylabel`             | Label of the y-axis
+`ymax`               | Maximal value of y-axis.
 
 
 ### Data file
