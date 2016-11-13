@@ -12,88 +12,87 @@ defaults:
   title_y: 1.007
   barwidth: 0.3
   barcolors:
-    - 'blue'
-    - 'red'
+    - blue
+    - red
   legend:
-    - "Scopus"
-    - "WoS"
-  xlabel: "rok publikovania"
-
+    - Scopus
+    - WoS
+  xlabel: rok publikovania
 
 # Katedra biológie
 bio-citations:
-  suptitle: "Katedra biológie"
-  title: "Citovanosť článkov publikovaných v období 2000-2016"
-  ylabel: "počet citácií"
+  suptitle: Katedra biológie
+  title: Citovanosť článkov publikovaných v období 2000-2016
+  ylabel: počet citácií
   ymax: 90
 
 bio-publications:
-  suptitle: "Katedra biológie"
-  title: "Vývoj publikačnej činnosti v období 2000-2016"
-  ylabel: "počet publikácií"
+  suptitle: Katedra biológie
+  title: Vývoj publikačnej činnosti v období 2000-2016
+  ylabel: počet publikácií
   ymax: 7.5
 
 # Katedra biotechnológií
 biotech-citations:
-  suptitle: "Katedra biotechnológií"
-  title: "Citovanosť článkov publikovaných v období 2000-2016"
-  ylabel: "počet citácií"
+  suptitle: Katedra biotechnológií
+  title: Citovanosť článkov publikovaných v období 2000-2016
+  ylabel: počet citácií
   ymax: 90
 
 biotech-publications:
-  suptitle: "Katedra biotechnológií"
-  title: "Vývoj publikačnej činnosti v období 2000-2016"
-  ylabel: "počet publikácií"
+  suptitle: Katedra biotechnológií
+  title: Vývoj publikačnej činnosti v období 2000-2016
+  ylabel: počet publikácií
   ymax: 16.5
 
 # Katedra chémie
 chem-citations:
-  suptitle: "Katedra chémie"
-  title: "Citovanosť článkov publikovaných v období 2000-2016"
-  ylabel: "počet citácií"
+  suptitle: Katedra chémie
+  title: Citovanosť článkov publikovaných v období 2000-2016
+  ylabel: počet citácií
   ymax: 250
 
 chem-publications:
-  suptitle: "Katedra chémie"
-  title: "Vývoj publikačnej činnosti v období 2000-2016"
-  ylabel: "počet publikácií"
+  suptitle: Katedra chémie
+  title: Vývoj publikačnej činnosti v období 2000-2016
+  ylabel: počet publikácií
   ymax: 40
 
 # Katedra ekochémie a rádioekológie
 eco-citations:
-  suptitle: "Katedra ekochémie a rádioekológie"
-  title: "Citovanosť článkov publikovaných v období 2000-2016"
-  ylabel: "počet citácií"
+  suptitle: Katedra ekochémie a rádioekológie
+  title: Citovanosť článkov publikovaných v období 2000-2016
+  ylabel: počet citácií
   ymax: 90
 
 eco-publications:
-  suptitle: "Katedra ekochémie a rádioekológie"
-  title: "Vývoj publikačnej činnosti v období 2000-2016"
-  ylabel: "počet publikácií"
+  suptitle: Katedra ekochémie a rádioekológie
+  title: Vývoj publikačnej činnosti v období 2000-2016
+  ylabel: počet publikácií
   ymax: 11.8
 
 # Katedra aplikovanej informatiky a matematiky
 inf-citations:
-  suptitle: "Katedra aplikovanej informatiky a matematiky"
-  title: "Citovanosť článkov publikovaných v období 2000-2016"
-  ylabel: "počet citácii"
+  suptitle: Katedra aplikovanej informatiky a matematiky
+  title: Citovanosť článkov publikovaných v období 2000-2016
+  ylabel: počet citácii
   ymax: 10.5
 
 inf-publications:
-  suptitle: "Katedra aplikovanej informatiky a matematiky"
-  title: "Vývoj publikačnej činnosti v období 2000-2016"
-  ylabel: "počet publikácií"
+  suptitle: Katedra aplikovanej informatiky a matematiky
+  title: Vývoj publikačnej činnosti v období 2000-2016
+  ylabel: počet publikácií
   ymax: 5
 
 # Fakulta prírodných vied
 all-citations:
-  suptitle: "Fakulta prírodných vied"
-  title: "Citovanosť článkov publikovaných v období 2000-2016"
-  ylabel: "počet citácií"
+  suptitle: Fakulta prírodných vied
+  title: Citovanosť článkov publikovaných v období 2000-2016
+  ylabel: počet citácií
   ymax: 320
 
 all-publications:
-  suptitle: "Fakulta prírodných vied"
-  title: "Vývoj publikačnej činnosti v období 2000-2016"
-  ylabel: "počet publikácií"
+  suptitle: Fakulta prírodných vied
+  title: Vývoj publikačnej činnosti v období 2000-2016
+  ylabel: počet publikácií
   ymax: 67
