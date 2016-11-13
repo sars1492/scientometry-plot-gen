@@ -10,7 +10,7 @@ The *scientometry-plot-gen* scientometric plot generator that uses
 [matplotlib](http://matplotlib.org/) to generate set of scientometric plots for
 publishing purposes.
 
-![Faculty of Natural Science Citations plot](plot-all-citations.png)
+![Faculty of Natural Science Citations plot](examples/plot-fns-citations.png)
 
 
 ## Installation
@@ -74,9 +74,9 @@ optional arguments:
 
 4. You can also load metadata from the alternative metadata YAML file.
    Following command generates all plots defined in the
-   `all-citations-metadata.yaml`:
+   `fns-citations-metadata.yaml`:
 
-   `$ ./scientometry_plot_gen.py -m all-citations-metadata.yaml`
+   `$ ./scientometry-plot-gen.py -m fns-citations-metadata.yaml`
 
 
 ### Metadata YAML file
@@ -86,7 +86,7 @@ and individual plot sections that has to have the same names as individual data
 files (without `.csv` extension).  Text in the YAML file can contain UTF-8
 characters.
 
-*all-citations-metadata.yaml:*
+[`fns-citations-metadata.yaml`](examples/fns-citations-metadata.yaml)
 
 ```yaml
 defaults:
@@ -103,22 +103,22 @@ defaults:
   title_y: 1.007
   barwidth: 0.3
   barcolors:
-    - 'blue'
-    - 'red'
+    - blue
+    - red
   legend:
-    - "Scopus"
-    - "WoS"
-  xlabel: "Year of Publishing"
+    - Scopus
+    - WoS
+  xlabel: Year of Publishing
 
 all-citations:
-  suptitle: "UCM, Faculty of Natural Sciences"
-  title: "Citations over 2000-2016"
-  ylabel: "Citation Count"
+  suptitle: Faculty of Natural Sciences
+  title: Citations over 2000-2016
+  ylabel: Citation Count
   ymax: 320
 ```
 
-Metadata Key | Description
--------------|------------
+Metadata key | Description
+------------ | -----------
 __`format`__ | Output image format
 __`resolution`__ | Output image resolution in DPI
 __`figsize`__ | Physical width and height of the output image in centimeters
@@ -145,7 +145,7 @@ contains list of years and following columns contain individual datasets that
 are supposed to be visualized in single plot.  Order and total count of datasets
 has to match the content `barcolors` and `legend` metadata entries.
 
-*all-citations.csv:*
+[`fns-citations.csv:`](examples/fns-citations.csv)
 
 ```
 2000,33,12

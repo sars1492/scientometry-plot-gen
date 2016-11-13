@@ -12,15 +12,15 @@ defaults:
   title_y: 1.007
   barwidth: 0.3
   barcolors:
-    - 'blue'
-    - 'red'
+    - blue
+    - red
   legend:
-    - "Scopus"
-    - "WoS"
-  xlabel: "Year of Publishing"
+    - Scopus
+    - WoS
+  xlabel: Year of Publishing
 
-all-citations:
-  suptitle: "Faculty of Natural Sciences"
-  title: "Citations over 2000-2016"
-  ylabel: "Citation Count"
+fns-citations:
+  suptitle: Faculty of Natural Sciences
+  title: Citations over 2000-2016
+  ylabel: Citation Count
   ymax: 320
