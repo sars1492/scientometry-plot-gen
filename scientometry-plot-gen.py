@@ -107,7 +107,7 @@ class Plot:
 
     def render(self):
 
-        rc('font', family='Liberation Serif')
+        rc('font', family='Liberation Sans')
 
         fig = plt.figure(figsize=self.metadata.figsize)
 
