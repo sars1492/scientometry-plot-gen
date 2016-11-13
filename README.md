@@ -20,21 +20,17 @@ placed to into the same directory as data file(s) and metadata YAML file(s).
 
 ### Fedora 22+
 
-```
-# dnf install -y python-matplotlib python-yaml`
-```
+    $ sudo dnf install -y python-matplotlib python-yaml
+
 
 ### CentOS/RHEL, older Fedora
 
-```
-# yum install -y python-matplotlib python-yaml`
-```
+    $ sudo yum install -y python-matplotlib python-yaml
 
-### Other Linux distro or OS
 
-```
-# pip install matplotlib yaml
-```
+### Other Linux distro or other OS
+
+    $ sudo pip install matplotlib yaml
 
 
 ## Synopsis
