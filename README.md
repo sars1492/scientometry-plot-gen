@@ -1,36 +1,49 @@
 # scientometry-plot-gen
 
-A command line plot generator that produces a set of bar chart plots
-visualizing publication and citation statistics over range of years.  All
-relevant metadata for individual plots are defined by YAML file.  Plot data are
-being loaded from the set of data files in CSV format located in the same
-directory.
-
-The *scientometry-plot-gen* scientometric plot generator that uses
-[matplotlib](http://matplotlib.org/) to generate set of scientometric plots for
-publishing purposes.
+A command line plot generator that uses [matplotlib](http://matplotlib.org/) to
+produce a set of bar chart plots visualizing publication and citation statistics
+over range of years.  All relevant metadata for individual plots are defined by
+metadata file in YAML format.  Plot data are being loaded from the set of data
+files in CSV format located in the same directory.
 
 ![Faculty of Natural Science Citations plot](examples/plot-fns-citations.png)
 
 
 ## Installation
 
-The script require `matplotlib` and `yaml` Python packages to run.  It has to be
-placed to into the same directory as data file(s) and metadata YAML file(s).
+The `scientometry-plot-gen.py` script requires `matplotlib` and `yaml` Python
+packages to run.  The script itself is usually placed into the working
+directory, although it could be useful to place it e.g. into `~/bin` directory
+and add `~/bin` to `PATH`.  Anyway, in current version, it has to be
+executed from the the directory containing data file(s) as there is currently no
+way to define alternative path to data files.
 
-### Fedora 22+
+Following subsections describe how to install the dependency packages.
+
+### Fedora
 
     $ sudo dnf install -y python-matplotlib python-yaml
 
 
-### CentOS/RHEL, older Fedora
+### CentOS/RHEL
 
     $ sudo yum install -y python-matplotlib python-yaml
 
 
-### Other Linux distro or other OS
+### Ubuntu/Debian
 
-    $ sudo pip install matplotlib yaml
+    $ sudo apt-get install python-matplotlib python-yaml
+
+
+### Other Linux distro, Apple macOS, Other UNIX-like OS
+
+    $ sudo pip install matplotlib pyyaml
+
+
+### MS Windows
+
+    > python -m pip install -U pip setuptools
+    > python -m pip install matplotlib pyyaml
 
 
 ## Synopsis
@@ -46,43 +59,81 @@ positional arguments:
 
 optional arguments:
   -h, --help         show this help message and exit
-  -m MEATADATA_FILE  load metadata from METADATA_FILE. Uses 'plot_metadata.yaml'
-                     as default.
+  -m MEATADATA_FILE  load metadata from METADATA_FILE. Uses 'plot_metadata.yaml' as default.
 ```
 
 
-## Usage Examples
+## Usage examples
 
-1. Generate all plots defined in metadata YAML file:
+1. Generate all plots defined in metadata file:
 
-   `$ ./scientometry-plot-gen.py`
+    $ ./scientometry-plot-gen.py
 
 2. Generate plots named `all-publications` and `all-citations` that are defined
-   in `plot-metadata.yaml` (the default metadata YAML file).
+   in `plot-metadata.yaml` (the default metadata file).
 
-   `$ ./scientometry-plot-gen.py all-publications all-citations`
+    $ ./scientometry-plot-gen.py all-publications all-citations
 
 3. Since data file names have to match plot names, you can use names of the data
    files as well, the `.csv` suffix will be ignored.  That comes very handy when
    using Tab completition:
 
-    `$ ./scientometry-plot-gen.py all-publications.csv all-citations.csv`
+    $ ./scientometry-plot-gen.py all-publications.csv all-citations.csv
 
-4. You can also load metadata from the alternative metadata YAML file.
+4. You can also load metadata from the alternative metadata file.
    Following command generates all plots defined in the
    `fns-citations-metadata.yaml`:
 
-   `$ ./scientometry-plot-gen.py -m fns-citations-metadata.yaml`
+    $ ./scientometry-plot-gen.py -m fns-citations-metadata.yaml
+
+5. Making `scientometry-plot-gen.py` globally accessible:
+
+    $ cp scientometry-plot-gen.py ~/bin
+    $ export PATH=$PATH:~/bin
+    $ cd ~/data
+    $ ls
+    data.csv
+    metadata.yaml
+    $ scientometry-plot-gen.py -m metadata.yaml
 
 
-### Metadata YAML file
+### Metadata file
 
-The metadata YAML file has `defaults` section that is being applied to all plots
-and individual plot sections that has to have the same names as individual data
-files (without `.csv` extension).  Text in the YAML file can contain UTF-8
+The metadata file consists of `defaults` section and individual plot sections.
+Keys and values of all plot sections are being merged with the `defaults`
+section.  If the same key is being specified in both `defaults` and the plot
+section, value defined in the plot section overrides the value in the `defaults`
+section.  Plot sections has to have the same names as corresponding data files
+(without `.csv` extension).  Values in the metadata file can contain UTF-8
 characters.
 
-[`fns-citations-metadata.yaml`](examples/fns-citations-metadata.yaml)
+
+#### List of valid metadata keys
+
+Metadata key | Description
+------------ | -----------
+__`format`__ | Output image format
+__`resolution`__ | Output image resolution in DPI
+__`figsize`__ | Physical width and height of the output image in centimeters
+__`suptitle_fontsize`__ | Font size of the supreme title (in points)
+__`title_fontsize`__ | Font size of the plot title (in points)
+__`ticklabel_fontsize`__ | Font size of the tick labels (in points)
+__`axislabel_fontsize`__ | Font size of the axis labels (in points)
+__`legend_fontsize`__ | Font size of the legend labels (in points)
+__`barwidth`__ | Relative width of the bars
+__`barcolors`__ | Bar colors for individual data sets (value order has to match columns in the data file)
+__`legend`__ | Legend labels for individual data sets (value order has to columns in the data file)
+__`suptitle`__ | Supreme title of the figure
+__`title`__ | Title of the plot
+__`title_y`__ | Vertical shift of the plot title (relatively to the plot border)
+__`xlabel`__ | Label of the x-axis
+__`ylabel`__ | Label of the y-axis
+__`ymax`__ | Maximal value of y-axis.
+
+
+#### Example metadata file
+
+__[`fns-citations-metadata.yaml`](examples/fns-citations-metadata.yaml):__
 
 ```yaml
 defaults:
@@ -113,35 +164,19 @@ all-citations:
   ymax: 320
 ```
 
-Metadata key | Description
------------- | -----------
-__`format`__ | Output image format
-__`resolution`__ | Output image resolution in DPI
-__`figsize`__ | Physical width and height of the output image in centimeters
-__`suptitle_fontsize`__ | Font size of the supreme title (in points)
-__`title_fontsize`__ | Font size of the plot title (in points)
-__`ticklabel_fontsize`__ | Font size of the tick labels (in points)
-__`axislabel_fontsize`__ | Font size of the axis labels (in points)
-__`legend_fontsize`__ | Font size of the legend labels (in points)
-__`barwidth`__ | Relative width of the bars
-__`barcolors`__ | Bar colors for individual data sets (value order has to match columns in the data file)
-__`legend`__ | Legend labels for individual data sets (value order has to columns in the data file)
-__`suptitle`__ | Supreme title of the figure
-__`title`__ | Title of the plot
-__`title_y`__ | Vertical shift of the plot title (relatively to the plot border)
-__`xlabel`__ | Label of the x-axis
-__`ylabel`__ | Label of the y-axis
-__`ymax`__ | Maximal value of y-axis.
-
 
 ### Data file
 
 Data file has to be in CSV (Comma separated Values) format where first column
 contains list of years and following columns contain individual datasets that
 are supposed to be visualized in single plot.  Order and total count of datasets
-has to match the content `barcolors` and `legend` metadata entries.
+has to match the ordered lists defined by `barcolors` and `legend` metadata
+keys.
 
-[`fns-citations.csv:`](examples/fns-citations.csv)
+
+#### Example data file
+
+__[`fns-citations.csv`](examples/fns-citations.csv):__
 
 ```
 2000,33,12
@@ -165,9 +200,9 @@ has to match the content `barcolors` and `legend` metadata entries.
 
 ## License
 
-*scientometry-plot-gen.py -- Scientometric plot generator*
+scientometry-plot-gen.py -- Scientometric plot generator
 
-Copyright (C) 2016  Juraj Szasz (juraj.szasz3@gmail.com)
+Copyright (C) 2016  Juraj Szasz (<juraj.szasz3@gmail.com>)
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
@@ -179,4 +214,4 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
-this program.  If not, see [GNU licenses](http://www.gnu.org/licenses/).
+this program.  If not, see <http://www.gnu.org/licenses/>.
