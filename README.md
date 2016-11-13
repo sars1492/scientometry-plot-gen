@@ -59,18 +59,18 @@ optional arguments:
 
 1. Generate all plots defined in metadata YAML file:
 
-   `$ ./scientometry_plot_gen.py`
+   `$ ./scientometry-plot-gen.py`
 
 2. Generate plots named `all-publications` and `all-citations` that are defined
    in `plot-metadata.yaml` (the default metadata YAML file).
 
-   `$ ./scientometry_plot_gen.py all-publications all-citations`
+   `$ ./scientometry-plot-gen.py all-publications all-citations`
 
 3. Since data file names have to match plot names, you can use names of the data
    files as well, the `.csv` suffix will be ignored.  That comes very handy when
    using Tab completition:
 
-    `$ ./scientometry_plot_gen.py all-publications.csv all-citations.csv`
+    `$ ./scientometry-plot-gen.py all-publications.csv all-citations.csv`
 
 4. You can also load metadata from the alternative metadata YAML file.
    Following command generates all plots defined in the
