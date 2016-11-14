@@ -65,36 +65,35 @@ optional arguments:
 
 ## Usage examples
 
-1. Generate all plots defined in metadata file:
+ 1. Generate all plots defined in metadata file:
 
-    $ ./scientometry-plot-gen.py
+        $ ./scientometry-plot-gen.py
 
-2. Generate plots named `all-publications` and `all-citations` that are defined
-   in `plot-metadata.yaml` (the default metadata file).
+ 2. Generate plots named `all-publications` and `all-citations` that are defined
+    in `plot-metadata.yaml` (the default metadata file).
 
-    $ ./scientometry-plot-gen.py all-publications all-citations
+        $ ./scientometry-plot-gen.py all-publications all-citations
 
-3. Since data file names have to match plot names, you can use names of the data
-   files as well, the `.csv` suffix will be ignored.  That comes very handy when
-   using Tab completition:
+ 3. Since data file names have to match plot names, you can use names of the
+    data files as well, the `.csv` suffix will be ignored.  That comes very
+    handy when using Tab completition:
 
-    $ ./scientometry-plot-gen.py all-publications.csv all-citations.csv
+        $ ./scientometry-plot-gen.py all-publications.csv all-citations.csv
 
-4. You can also load metadata from the alternative metadata file.
-   Following command generates all plots defined in the
-   `fns-citations-metadata.yaml`:
+ 4. You can also load metadata from the alternative metadata file.  Following
+    command generates all plots defined in the `fns-citations-metadata.yaml`:
 
-    $ ./scientometry-plot-gen.py -m fns-citations-metadata.yaml
+        $ ./scientometry-plot-gen.py -m fns-citations-metadata.yaml
 
-5. Making `scientometry-plot-gen.py` globally accessible:
+ 5. Making `scientometry-plot-gen.py` globally accessible:
 
-    $ cp scientometry-plot-gen.py ~/bin
-    $ export PATH=$PATH:~/bin
-    $ cd ~/data
-    $ ls
-    data.csv
-    metadata.yaml
-    $ scientometry-plot-gen.py -m metadata.yaml
+        $ cp scientometry-plot-gen.py ~/bin
+        $ export PATH=$PATH:~/bin
+        $ cd ~/data
+        $ ls
+        data.csv
+        metadata.yaml
+        $ scientometry-plot-gen.py -m metadata.yaml
 
 
 ### Metadata file
@@ -112,28 +111,26 @@ characters.
 
 Metadata key | Description
 ------------ | -----------
-__`format`__ | Output image format
-__`resolution`__ | Output image resolution in DPI
-__`figsize`__ | Physical width and height of the output image in centimeters
-__`suptitle_fontsize`__ | Font size of the supreme title (in points)
-__`title_fontsize`__ | Font size of the plot title (in points)
-__`ticklabel_fontsize`__ | Font size of the tick labels (in points)
-__`axislabel_fontsize`__ | Font size of the axis labels (in points)
-__`legend_fontsize`__ | Font size of the legend labels (in points)
-__`barwidth`__ | Relative width of the bars
-__`barcolors`__ | Bar colors for individual data sets (value order has to match columns in the data file)
-__`legend`__ | Legend labels for individual data sets (value order has to columns in the data file)
-__`suptitle`__ | Supreme title of the figure
-__`title`__ | Title of the plot
-__`title_y`__ | Vertical shift of the plot title (relatively to the plot border)
-__`xlabel`__ | Label of the x-axis
-__`ylabel`__ | Label of the y-axis
-__`ymax`__ | Maximal value of y-axis.
+`format` | Output image format
+`resolution` | Output image resolution in DPI
+`figsize` | Physical width and height of the output image in centimeters
+`suptitle_fontsize` | Font size of the supreme title (in points)
+`title_fontsize` | Font size of the plot title (in points)
+`ticklabel_fontsize` | Font size of the tick labels (in points)
+`axislabel_fontsize` | Font size of the axis labels (in points)
+`legend_fontsize` | Font size of the legend labels (in points)
+`barwidth` | Relative width of the bars
+`barcolors` | Bar colors for individual data sets (value order has to match columns in the data file)
+`legend` | Legend labels for individual data sets (value order has to columns in the data file)
+`suptitle` | Supreme title of the figure
+`title` | Title of the plot
+`title_y` | Vertical shift of the plot title (relatively to the plot border)
+`xlabel` | Label of the x-axis
+`ylabel` | Label of the y-axis
+`ymax` | Maximal value of y-axis.
 
 
 #### Example metadata file
-
-__[`fns-citations-metadata.yaml`](examples/fns-citations-metadata.yaml):__
 
 ```yaml
 defaults:
@@ -164,6 +161,8 @@ all-citations:
   ymax: 320
 ```
 
+See [`fns-citations-metadata.yaml`](examples/fns-citations-metadata.yaml).
+
 
 ### Data file
 
@@ -175,8 +174,6 @@ keys.
 
 
 #### Example data file
-
-__[`fns-citations.csv`](examples/fns-citations.csv):__
 
 ```
 2000,33,12
@@ -196,6 +193,8 @@ __[`fns-citations.csv`](examples/fns-citations.csv):__
 2014,184,160
 2015,33,40
 ```
+
+See [`fns-citations.csv`](examples/fns-citations.csv).
 
 
 ## License
