@@ -3,13 +3,13 @@ defaults:
   resolution: 96 # [dpi]
   figsize:
     - 25.4 # width [cm]
-    - 15.5 # height [cm]
+    - 14.1 # height [cm]
   suptitle_fontsize: 14
   title_fontsize: 12
   ticklabel_fontsize: 11
   axislabel_fontsize: 11
   legend_fontsize: 11
-  title_y: 1.007
+  title_y: 1.004
   barwidth: 0.3
   barcolors:
     - blue
