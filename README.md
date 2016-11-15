@@ -76,7 +76,7 @@ optional arguments:
 
  3. Since data file names have to match plot names, you can use names of the
     data files as well, the `.csv` suffix will be ignored.  That comes very
-    handy when using Tab completition:
+    handy when using tab completition:
 
         $ ./scientometry-plot-gen.py all-publications.csv all-citations.csv
 
