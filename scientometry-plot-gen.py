@@ -159,7 +159,10 @@ def main():
     3. Instantiate Plot objects in a loop and render all output files.
 
     """
-    arg_parser = argparse.ArgumentParser(description=__doc__)
+    desc = "Generate set of scientometric plots defined by METADATA_FILE.  " + \
+           "If no PLOT is specified, all plots defined in METADATA_FILE" + \
+           "will be generated."
+    arg_parser = argparse.ArgumentParser(description=desc)
     arg_parser.add_argument("-m", metavar="MEATADATA_FILE", dest='metadata_file', default="plot-metadata.yaml",
                             help="load metadata from METADATA_FILE. Uses 'plot_metadata.yaml' as default.")
     arg_parser.add_argument("plots", metavar="PLOT", nargs='*',
