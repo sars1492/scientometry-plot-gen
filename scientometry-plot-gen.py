@@ -150,16 +150,25 @@ class Plot:
         fig.savefig(self.metadata.plot_file, format=self.metadata.format, dpi=self.metadata.resolution, bbox_inches='tight')
 
 
-if __name__ == "__main__":
+def main():
+    """Run initial code when this module is executed as a script.
 
+    1. Parse command line arguments using argparse.ArgumentParser object.
+    2. Extract plot metadata from YAML file into the list of PlotMetadata
+       objects using PlotMetadataFactory object.
+    3. Instantiate Plot objects in a loop and render all output files.
+
+    """
     arg_parser = argparse.ArgumentParser(description=__doc__)
     arg_parser.add_argument("-m", metavar="MEATADATA_FILE", dest='metadata_file', default="plot-metadata.yaml",
                             help="load metadata from METADATA_FILE. Uses 'plot_metadata.yaml' as default.")
     arg_parser.add_argument("plots", metavar="PLOT", nargs='*',
                             help="plot name defined in METADATA_FILE")
-
     args = arg_parser.parse_args()
 
+    # Following line contains lambda function that removes '.csv' suffix from
+    # the arguments and thus allows to specify data file names instead of plot
+    # names.  This comes very handy when using tab completition.
     plot_metadata_factory = PlotMetadataFactory(args.metadata_file, [x.rsplit(".csv", 1)[0] for x in args.plots])
     plot_metadata_dict = plot_metadata_factory.get_plots()
 
@@ -167,3 +176,11 @@ if __name__ == "__main__":
         plot = Plot(plot_metadata)
         print "Generating", plot_metadata.plot_file, "..."
         plot.render()
+
+
+if __name__ == "__main__":
+    # This code is executed only when scientometry-plot-gen is being run
+    # directly as a script.  Since local variables are allocated much faster
+    # than global variables, it is a good practice to encapsulate whole initial
+    # code into the main() function.
+    main()
