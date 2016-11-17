@@ -57,23 +57,26 @@ class PlotMetadata:
         self.legend_fontsize = plot_metadata['legend_fontsize']
 
 
-class PlotMetadataFactory:
+class MetadataFileParser:
 
-    def __init__(self, plot_metadata_file, selected_plots):
-        with open(plot_metadata_file, 'r') as yaml_file:
-            yaml_metadata = yaml.load(yaml_file)
+    def __init__(self, metadata_file):
+        with open(metadata_file, 'r') as yaml_file:
+            yaml_dict = yaml.load(yaml_file)
 
-        plot_metadata_list = []
-        default_metadata = yaml_metadata['defaults']
+        plot_metadata_dict = {}
+        default_metadata = yaml_dict['defaults']
 
-        for plot, metadata in yaml_metadata.iteritems():
-            if plot != 'defaults' and (not selected_plots or plot in selected_plots):
-                plot_metadata_list.append(PlotMetadata(plot, dict(default_metadata.items() + metadata.items())))
+        for section, metadata in yaml_dict.iteritems():
+            if section != 'defaults':
+                plot_metadata_dict[section] = PlotMetadata(section, dict(default_metadata.items() + metadata.items()))
 
-        self.plot_metadata_list = plot_metadata_list
+        self.plot_metadata_dict = plot_metadata_dict
 
-    def get_plots(self, plot_selection=None):
-        return self.plot_metadata_list
+    def select_plots(self, selected_plots):
+        if selected_plots:
+            return [self.plot_metadata_dict[x] for x in selected_plots]
+        else:
+            return self.plot_metadata_dict.values()
 
 
 class PlotData:
@@ -155,7 +158,7 @@ def main():
 
     1. Parse command line arguments using argparse.ArgumentParser object.
     2. Extract plot metadata from YAML file into the list of PlotMetadata
-       objects using PlotMetadataFactory object.
+       objects using MetadataFileParser object.
     3. Instantiate Plot objects in a loop and render all output files.
 
     """
@@ -169,13 +172,14 @@ def main():
                             help="plot name defined in METADATA_FILE")
     args = arg_parser.parse_args()
 
-    # Following line contains lambda function that removes '.csv' suffix from
-    # the arguments and thus allows to specify data file names instead of plot
-    # names.  This comes very handy when using tab completition.
-    plot_metadata_factory = PlotMetadataFactory(args.metadata_file, [x.rsplit(".csv", 1)[0] for x in args.plots])
-    plot_metadata_dict = plot_metadata_factory.get_plots()
+    metadata_file_parser = MetadataFileParser(args.metadata_file)
+    # The list comprehension in the following line strips '.csv' suffix from the
+    # individual args.plots elements before they will be passed to
+    # select_plots() method.  This allows user to specify data file names
+    # instead of plot names (comes very handy when using tab completition).
+    plot_metadata_list = metadata_file_parser.select_plots([x.rsplit(".csv", 1)[0] for x in args.plots])
 
-    for plot_metadata in plot_metadata_dict:
+    for plot_metadata in plot_metadata_list:
         plot = Plot(plot_metadata)
         print "Generating", plot_metadata.plot_file, "..."
         plot.render()
