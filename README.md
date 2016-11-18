@@ -128,8 +128,8 @@ Metadata key | Description
 `axislabel_fontsize` | Font size of the axis labels (in points)
 `legend_fontsize` | Font size of the legend labels (in points)
 `barwidth` | Relative width of the bars
-`barcolors` | Bar colors for individual data sets (value order has to match columns in the data file)
-`legend` | Legend labels for individual data sets (value order has to columns in the data file)
+`barcolors` | Bar colors for individual datasets (value order has to match columns in the data file)
+`legend` | Legend labels for individual datasets (value order has to columns in the data file)
 `suptitle` | Supreme title of the figure
 `title` | Title of the plot
 `title_y` | Vertical shift of the plot title (relatively to the plot border)
