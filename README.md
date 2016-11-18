@@ -49,17 +49,25 @@ Following subsections describe how to install the dependency packages.
 ## Synopsis
 
 ```
-usage: ./scientometry-plot-gen.py [-h] [-m MEATADATA_FILE] [PLOT [PLOT ...]]
+usage: scientometry-plot-gen.py [-h] [-m MEATADATA_FILE] [PLOT [PLOT ...]]
 
-Generate set of scientometric plots defined by METADATA_FILE. If no PLOT is
-specified, all plots defined in METADATA_FILE will be generated.
+Generate set of scientometric plots defined by METADATA_FILE
+('plot-metadata.yaml' as default).  Individual PLOT entries has to match
+sections of the metadata file.  If no PLOT is specified, all plots defined
+in METADATA_FILE will be generated.
 
 positional arguments:
   PLOT               plot name defined in METADATA_FILE
 
 optional arguments:
   -h, --help         show this help message and exit
-  -m MEATADATA_FILE  load metadata from METADATA_FILE. Uses 'plot_metadata.yaml' as default.
+
+  -m MEATADATA_FILE  load metadata from METADATA_FILE
+
+Data for each individual plot are loaded from a file in CSV format, named
+'<PLOT_NAME>.csv', which has to be located in the working directory. The data
+file name can be also specified instead of plot name when selecting a subset of
+plots via PLOT argument(s). This comes very handy when using tab completititon.
 ```
 
 

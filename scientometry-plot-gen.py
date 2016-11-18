@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# scientometry-plot-gen.py -- Scientometric plot generator
-#
+# scientometry-plot-gen.py -- A scientometric plot generator script.
+#n
 # Copyright (C) 2016  Juraj Szász <juraj.szasz3@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify it under
@@ -19,8 +19,28 @@
 # this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""Generate set of scientometric plots defined by METADATA_FILE.  If no PLOT is
-specified, all plots defined in METADATA_FILE will be generated.
+"""A scientometry plot generator script.
+
+usage: scientometry-plot-gen.py [-h] [-m MEATADATA_FILE] [PLOT [PLOT ...]]
+
+Generate set of scientometric plots defined by METADATA_FILE
+('plot-metadata.yaml' as default).  Individual PLOT entries has to match
+sections of the metadata file.  If no PLOT is specified, all plots defined
+in METADATA_FILE will be generated.
+
+positional arguments:
+  PLOT               plot name defined in METADATA_FILE
+
+optional arguments:
+  -h, --help         show this help message and exit
+
+  -m MEATADATA_FILE  load metadata from METADATA_FILE
+
+Data for each individual plot are loaded from a file in CSV format, named
+'<PLOT_NAME>.csv', which has to be located in the working directory. The data
+file name can be also specified instead of plot name when selecting a subset of
+plots via PLOT argument(s). This comes very handy when using tab completititon.
+
 """
 
 from __future__ import unicode_literals
@@ -162,12 +182,19 @@ def main():
     3. Instantiate Plot objects in a loop and render all output files.
 
     """
-    desc = "Generate set of scientometric plots defined by METADATA_FILE.  " + \
-           "If no PLOT is specified, all plots defined in METADATA_FILE" + \
-           "will be generated."
-    arg_parser = argparse.ArgumentParser(description=desc)
+    description = "Generate set of scientometric plots defined by " + \
+                  "METADATA_FILE ('plot-metadata.yaml' as default).  If no " + \
+                  "PLOT is specified, all plots defined in METADATA_FILE " + \
+                  "will be generated."
+    epilog = "Data for each individual plot are loaded from a file in CSV " + \
+             "format, named  '<PLOT_NAME>.csv', which has to be located in " + \
+             "the working directory.  The data file name can be also " + \
+             "specified instead of plot name when selecting a subset of " + \
+             "plots via PLOT argument(s).  This comes very handy when " + \
+             "using tab completititon."
+    arg_parser = argparse.ArgumentParser(description=description, epilog=epilog)
     arg_parser.add_argument("-m", metavar="MEATADATA_FILE", dest='metadata_file', default="plot-metadata.yaml",
-                            help="load metadata from METADATA_FILE. Uses 'plot_metadata.yaml' as default.")
+                            help="load metadata from METADATA_FILE")
     arg_parser.add_argument("plots", metavar="PLOT", nargs='*',
                             help="plot name defined in METADATA_FILE")
     args = arg_parser.parse_args()
