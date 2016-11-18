@@ -59,7 +59,7 @@ CM_PER_INCH = 2.54
 class PlotMetadata:
 
     def __init__(self, plot_name, plot_metadata):
-        self.plot_file = "plot-" + plot_name + "." + plot_metadata['format']
+        self.output_file = "plot-" + plot_name + "." + plot_metadata['format']
         self.data_file = plot_name + ".csv"
         self.suptitle = plot_metadata['suptitle']
         self.title = plot_metadata['title']
@@ -173,7 +173,7 @@ class Plot:
         # add a legend
         ax.legend(legend_handles, self.metadata.legend, fontsize=self.metadata.legend_fontsize)
 
-        fig.savefig(self.metadata.plot_file, format=self.metadata.format, dpi=self.metadata.resolution, bbox_inches='tight')
+        fig.savefig(self.metadata.output_file, format=self.metadata.format, dpi=self.metadata.resolution, bbox_inches='tight')
 
 
 def main():
