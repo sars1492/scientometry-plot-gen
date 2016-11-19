@@ -31,7 +31,8 @@ bio-publications:
   suptitle: Katedra biológie
   title: Vývoj publikačnej činnosti v období 2000-2016
   ylabel: Počet publikácií
-  ymax: 7.5
+  ymax: 6.2
+  legend_loc: upper left
 
 # Katedra biotechnológií
 biotech-citations:
@@ -44,7 +45,8 @@ biotech-publications:
   suptitle: Katedra biotechnológií
   title: Vývoj publikačnej činnosti v období 2000-2016
   ylabel: Počet publikácií
-  ymax: 16.5
+  ymax: 14.5
+  legend_loc: upper left
 
 # Katedra chémie
 chem-citations:
@@ -57,20 +59,22 @@ chem-publications:
   suptitle: Katedra chémie
   title: Vývoj publikačnej činnosti v období 2000-2016
   ylabel: Počet publikácií
-  ymax: 40
+  ymax: 35
+  legend_loc: upper left
 
 # Katedra ekochémie a rádioekológie
 eco-citations:
   suptitle: Katedra ekochémie a rádioekológie
   title: Citovanosť článkov publikovaných v období 2000-2016
   ylabel: Počet citácií
-  ymax: 90
+  ymax: 60
 
 eco-publications:
   suptitle: Katedra ekochémie a rádioekológie
   title: Vývoj publikačnej činnosti v období 2000-2016
   ylabel: Počet publikácií
-  ymax: 11.8
+  ymax: 10.5
+  legend_loc: upper left
 
 # Katedra aplikovanej informatiky a matematiky
 inf-citations:
@@ -96,4 +100,5 @@ all-publications:
   suptitle: Fakulta prírodných vied
   title: Vývoj publikačnej činnosti v období 2000-2016
   ylabel: Počet publikácií
-  ymax: 67
+  ymax: 60
+  legend_loc: upper left
