@@ -82,6 +82,9 @@ class PlotMetadata:
     ymax -- maximal value of the y-axis range
     legend -- list of dataset labels in the legend box
     legend_fontsize -- font size of the dataset labels in legend box (in pt)
+    legend_loc -- legend box location ('right', 'center left', 'upper right',
+                  'lower right', 'best', 'center', 'lower left', 'center right',
+                  'upper left', 'upper center' or 'lower center')
     barcolors -- list of bar colors of the individual datasets
     barwidth -- bar width (in x-axis units)
 
@@ -118,6 +121,7 @@ class PlotMetadata:
         self.ymax = plot_metadata['ymax']
         self.legend = plot_metadata['legend']
         self.legend_fontsize = plot_metadata['legend_fontsize']
+        self.legend_loc = plot_metadata['legend_loc']
         self.barcolors = plot_metadata['barcolors']
         self.barwidth = plot_metadata['barwidth']
 
@@ -299,7 +303,7 @@ class Plot:
         plt.grid()
 
         # Add legend box
-        ax.legend(legend_handles, self.metadata.legend, fontsize=self.metadata.legend_fontsize)
+        ax.legend(legend_handles, self.metadata.legend, fontsize=self.metadata.legend_fontsize, loc=self.metadata.legend_loc)
 
         # Export output image
         fig.savefig(self.metadata.output_file, format=self.metadata.format, dpi=self.metadata.resolution, bbox_inches='tight')
