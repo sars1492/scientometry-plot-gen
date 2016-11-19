@@ -260,46 +260,50 @@ class Plot:
         need to set it explicitly for each plot using 'ymax' parameter.
 
         """
+        # Set global font family
         rc('font', family='Liberation Sans')
 
+        # Initialize figure object
         fig = plt.figure(figsize=self.metadata.figsize)
-
-        plt.tick_params(labelsize=11)
-
         fig.suptitle(self.metadata.suptitle, fontsize=self.metadata.suptitle_fontsize, fontweight='bold')
 
+        # Add subplot
         ax = fig.add_subplot(111)
+        ax.set_title(self.metadata.title, fontsize=self.metadata.title_fontsize, y=self.metadata.title_y)
 
-        ind = np.arange(self.data.count())
-        width = self.metadata.barwidth
-        X = self.data.get_x()
-        Y = self.data.get_y()
+        # Define helper variables
+        ind = np.arange(self.data.count())  # tick indices for x-axis
+        width = self.metadata.barwidth      # width of bars (in x-axis units)
+        X = self.data.get_x()               # vector of years (x-axis)
+        Y = self.data.get_y()               # matrix of datasets
 
         print self.data.dataset_count()
 
+        # Create bars and legend handles for individual datasets
         legend_handles = []
         for i in xrange(self.data.dataset_count()):
             bar = ax.bar(ind + i*width, Y[i], width, color=self.metadata.barcolors[i])
             legend_handles.append(bar[0])
 
-        # axes and labels
-        ax.set_xlim(-width, len(ind)+width)
-        ax.set_ylim(0, self.metadata.ymax)
+        # Set x-axis ticks and labels
         ax.set_xlabel(self.metadata.xlabel, fontsize=self.metadata.axislabel_fontsize)
-        ax.set_ylabel(self.metadata.ylabel, fontsize=self.metadata.axislabel_fontsize)
-
-        ax.set_title(self.metadata.title, fontsize=self.metadata.title_fontsize, y=self.metadata.title_y)
+        ax.set_xlim(-width, len(ind)+width)
         ax.set_xticks(ind+width)
-
         xtick_names = ax.set_xticklabels([str(year) for year in X])
         plt.setp(xtick_names, fontsize=self.metadata.ticklabel_fontsize, fontweight='bold')
 
-        # add grid
+        # Set y-axis ticks and labels
+        ax.set_ylabel(self.metadata.ylabel, fontsize=self.metadata.axislabel_fontsize)
+        ax.set_ylim(0, self.metadata.ymax)
+        plt.tick_params(labelsize=self.metadata.ticklabel_fontsize)
+
+        # Add grid
         plt.grid()
 
-        # add a legend
+        # Add legend box
         ax.legend(legend_handles, self.metadata.legend, fontsize=self.metadata.legend_fontsize)
 
+        # Export output image
         fig.savefig(self.metadata.output_file, format=self.metadata.format, dpi=self.metadata.resolution, bbox_inches='tight')
 
 
