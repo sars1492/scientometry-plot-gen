@@ -277,8 +277,6 @@ class Plot:
         X = self.data.get_x()               # vector of years (x-axis)
         Y = self.data.get_y()               # matrix of datasets
 
-        print self.data.dataset_count()
-
         # Create bars and legend handles for individual datasets
         legend_handles = []
         for i in xrange(self.data.dataset_count()):
