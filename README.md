@@ -127,6 +127,7 @@ Metadata key | Description
 `ticklabel_fontsize` | Font size of the tick labels (in points)
 `axislabel_fontsize` | Font size of the axis labels (in points)
 `legend_fontsize` | Font size of the legend labels (in points)
+`legend_loc` | legend box location (`right`, `center left`, `upper right`, `lower right`, `best`, `center`, `lower left`, `center right`, `upper left`, `upper center` or `lower center`)
 `barwidth` | Relative width of the bars
 `barcolors` | Bar colors for individual datasets (value order has to match columns in the data file)
 `legend` | Legend labels for individual datasets (value order has to columns in the data file)
@@ -152,6 +153,7 @@ defaults:
   ticklabel_fontsize: 11
   axislabel_fontsize: 11
   legend_fontsize: 11
+  legend_loc: best
   title_y: 1.007
   barwidth: 0.3
   barcolors:

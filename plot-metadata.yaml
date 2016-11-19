@@ -9,6 +9,7 @@ defaults:
   ticklabel_fontsize: 11
   axislabel_fontsize: 11
   legend_fontsize: 11
+  legend_loc: best
   title_y: 1.004
   barwidth: 0.3
   barcolors:
