@@ -54,35 +54,101 @@ __version__ = "0.1"
 
 
 CM_PER_INCH = 2.54
+"""Unit conversion constant (centimeters per inch)."""
 
 
 class PlotMetadata:
 
+    """Metadata container for a single plot.
+
+    PlotMetadata object stores metadata for a single plot in the format that can
+    be directly passed to to Plot object.
+
+    Attributes:
+    output_file -- output image file name
+    format -- output image format
+    resolution -- output image resolution (in DPI)
+    figsize -- physical size of output image (in inches)
+    data_file -- data file name
+    suptitle -- supereme title of the figure
+    suptitle_fontsize -- font size of the supreme title (in pt)
+    title -- title of the plot
+    title_fontsize -- font size of the plot title (in pt)
+    title_y -- vertical shift of the plot title (in y-axis units)
+    xlabel -- label of the x-axis
+    ylabel -- label of the y-axis
+    axislabel_fontsize -- font size of the axis labels (in pt)
+    ticklabel_fontsize -- font size of the tick labels (in pt)
+    ymax -- maximal value of the y-axis range
+    legend -- list of dataset labels in the legend box
+    legend_fontsize -- font size of the dataset labels in legend box (in pt)
+    barcolors -- list of bar colors of the individual datasets
+    barwidth -- bar width (in x-axis units)
+
+    """
+
     def __init__(self, plot_name, plot_metadata):
+        """Initialize PlotMetadata object.
+
+        Encapsulates plot metadata loaded by MetadataFileParser into a container
+        object (PlotMetadata).  The 'output_file' and 'data_file' attributes are
+        automatically derived from the 'plot_name' argument.  The output image
+        dimensions ('figsize') is converted into inches, because Plot object
+        requires it in inches.
+
+        Positional arguments:
+        plot_name -- name of the plot
+        plot_metadata -- metadata dictionary extracted by MetadataFileParser
+
+        """
         self.output_file = "plot-" + plot_name + "." + plot_metadata['format']
-        self.data_file = plot_name + ".csv"
-        self.suptitle = plot_metadata['suptitle']
-        self.title = plot_metadata['title']
-        self.xlabel = plot_metadata['xlabel']
-        self.ylabel = plot_metadata['ylabel']
-        self.ymax = plot_metadata['ymax']
-        self.barcolors = plot_metadata['barcolors']
-        self.barwidth = plot_metadata['barwidth']
-        self.legend = plot_metadata['legend']
         self.format = plot_metadata['format']
         self.resolution = plot_metadata['resolution']
         self.figsize = [x / CM_PER_INCH for x in plot_metadata['figsize']]
+        self.data_file = plot_name + ".csv"
+        self.suptitle = plot_metadata['suptitle']
         self.suptitle_fontsize = plot_metadata['suptitle_fontsize']
+        self.title = plot_metadata['title']
         self.title_fontsize = plot_metadata['title_fontsize']
         self.title_y = plot_metadata['title_y']
-        self.ticklabel_fontsize = plot_metadata['ticklabel_fontsize']
+        self.xlabel = plot_metadata['xlabel']
+        self.ylabel = plot_metadata['ylabel']
         self.axislabel_fontsize = plot_metadata['axislabel_fontsize']
+        self.ticklabel_fontsize = plot_metadata['ticklabel_fontsize']
+        self.ymax = plot_metadata['ymax']
+        self.legend = plot_metadata['legend']
         self.legend_fontsize = plot_metadata['legend_fontsize']
+        self.barcolors = plot_metadata['barcolors']
+        self.barwidth = plot_metadata['barwidth']
 
 
 class MetadataFileParser:
 
+    """Metadata YAML file parser.
+
+    Parses metadata YAML file and extracts them into a dictionary of PlotMetadata
+    objects {'plot_name': PlotMetadata object}, containing metadata of all plots
+    found in the parsed metadata file ('plot_metadata_dict').
+
+    Attributes:
+    plot_metadata_dict -- dict containing PlotMetadata objects for all plots
+
+    """
+
     def __init__(self, metadata_file):
+        """Initialize MetadataFileParser object.
+
+        Parses metadata YAML file ('metadata_file') and extracts plot metadata
+        from the individual sections.  The 'defaults' section is extracted first
+        and its content is then merged into every single plot-specific metadata.
+        The resulting dictionary is being used for instantiation of the
+        PlotMetadata object for each individual plot.  These objects are stored
+        into the 'plot_metadata_dict' attribute.
+
+        Positional arguments:
+        metadata_file -- metadata YAML file name
+
+        """
         with open(metadata_file, 'r') as yaml_file:
             yaml_dict = yaml.load(yaml_file)
 
@@ -95,7 +161,19 @@ class MetadataFileParser:
 
         self.plot_metadata_dict = plot_metadata_dict
 
-    def select_plots(self, selected_plots):
+    def select_plots(self, selected_plots=None):
+        """Select subset of PlotMetadata objects from 'plot_metadata_dict'.
+
+        Selects subset of PlotMetadata objects defined by the 'selected_plots'
+        argument from the 'plot_metadata_dict' attribute.  If the argument is
+        undefined, all available PlotMetadata objects will be selected.
+
+        Keyword arguments:
+        selected_plots -- list of plot names (default: None)
+
+        Returns list of PlotMetadata objects for the selected plots.
+
+        """
         if selected_plots:
             return [self.plot_metadata_dict[x] for x in selected_plots]
         else:
@@ -104,35 +182,84 @@ class MetadataFileParser:
 
 class PlotData:
 
-    def __init__(self, data_file):
+    """Data container for a single plot.
 
+    Parses plot data file into a numpy array ('plot_data') that contains all
+    data for a single plot.  Data are saved in a matrix (X, Y1, Y2, ...), where
+    first column contains vector of X values and every other column contains
+    vector of Y values for individual datasets.
+
+    Attributes:
+    plot_data -- numpy array containing data for a single plot
+
+    """
+
+    def __init__(self, data_file):
+        """Parse data file and initialze PlotData object.
+
+        Uses numpy.genfromtxt() function to parse given CSV file ('data_file')
+        and extract its contents into 'plot_data' attribute.
+
+        Positional arguments:
+        data_file -- data file name
+
+        """
         self.plot_data = np.genfromtxt(data_file, dtype=int, delimiter=',')
 
     def count(self):
-
+        """Returns total amount of data (number of rows)."""
         return self.plot_data.shape[0]
 
     def dataset_count(self):
-
+        """Returns total amount of datasets (number of columns - 1)."""
         return self.plot_data.shape[1] - 1
 
     def get_x(self):
-
+        """Returns list of x values."""
         return self.plot_data[:, 0]
 
     def get_y(self):
-
+        """Returns list of lists of y values."""
         return self.plot_data[:, 1:].transpose()
 
 
 class Plot:
 
+    """Wrapper class for rendering a single plot using matplotlib.
+
+    Renders single plot based on the supplied metadata and data.
+
+    Attributes:
+    metadata -- PlotMetadata object containing actual plot metadata
+    data -- PlotData object containing actual plot data
+
+    """
+
     def __init__(self, plot_metadata):
+        """Initialize Plot object.
+
+        Initializes both 'metadata' and 'data' attributes from the given
+        PlotMetadata object ('plot_metadata' argument).
+
+        Positional arguments:
+        plot_metadata -- object containing all metadata for actual plot
+
+        """
         self.metadata = plot_metadata
         self.data = PlotData(self.metadata.data_file)
 
     def render(self):
+        """Render a single plot figure based on actual plot data and metadata.
 
+        Uses matplotlib to render a fancy scientometric bar chart based on the
+        'metadata' and 'data' attributes.  The bar chart is now optimized for
+        two datasets; nevertheless, it can be easily tweaked to any number of
+        datasets.  The figure supreme title and tick labels of x-axis ('year')
+        are formatted in bold font because it just looks cool.  Note that the
+        maximal value of the y-axis range is not calculated by this method.  You
+        need to set it explicitly for each plot using 'ymax' parameter.
+
+        """
         rc('font', family='Liberation Sans')
 
         fig = plt.figure(figsize=self.metadata.figsize)
@@ -211,7 +338,7 @@ def main():
 
     for plot_metadata in plot_metadata_list:
         plot = Plot(plot_metadata)
-        print "Generating", plot_metadata.plot_file, "..."
+        print "Generating", plot_metadata.output_file, "..."
         plot.render()
 
 
