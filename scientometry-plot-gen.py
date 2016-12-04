@@ -44,6 +44,7 @@ plots via PLOT argument(s). This comes very handy when using tab completititon.
 """
 
 from __future__ import unicode_literals
+from __future__ import division
 import argparse
 import yaml
 import numpy as np
@@ -276,21 +277,25 @@ class Plot:
         ax.set_title(self.metadata.title, fontsize=self.metadata.title_fontsize, y=self.metadata.title_y)
 
         # Define helper variables
-        ind = np.arange(self.data.count())  # tick indices for x-axis
-        width = self.metadata.barwidth      # width of bars (in x-axis units)
-        X = self.data.get_x()               # vector of years (x-axis)
-        Y = self.data.get_y()               # matrix of datasets
+        dataset_count = self.data.dataset_count()
+        ind = np.arange(self.data.count())    # tick indices for x-axis
+        width = self.metadata.barwidth        # width of a bar (in x-axis units)
+        group_width = dataset_count*width     # width of a group of bars
+        right_edge = len(ind)-1 + group_width # right edge of last plotted bar
+        X = self.data.get_x()                 # vector of years (x-axis)
+        Y = self.data.get_y()                 # matrix of datasets
 
         # Create bars and legend handles for individual datasets
         legend_handles = []
-        for i in xrange(self.data.dataset_count()):
+        for i in xrange(dataset_count):
             bar = ax.bar(ind + i*width, Y[i], width, color=self.metadata.barcolors[i])
             legend_handles.append(bar[0])
 
         # Set x-axis ticks and labels
         ax.set_xlabel(self.metadata.xlabel, fontsize=self.metadata.axislabel_fontsize)
-        ax.set_xlim(-width, len(ind)+width)
-        ax.set_xticks(ind+width)
+        ax.set_xlim(-group_width/2, right_edge + group_width/2)
+        ax.set_xticks(ind + group_width/2)
+
         xtick_names = ax.set_xticklabels([str(year) for year in X])
         plt.setp(xtick_names, fontsize=self.metadata.ticklabel_fontsize, fontweight='bold')
 
