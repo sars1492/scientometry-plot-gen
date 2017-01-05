@@ -203,13 +203,14 @@ class PlotData(object):
         """Parse data file and initialze PlotData object.
 
         Uses numpy.genfromtxt() function to parse given CSV file ('data_file')
-        and extract its contents into 'plot_data' attribute.
+        and extract its contents into 'plot_data' attribute.  The first line of
+        the CSV file will be skipped.
 
         Positional arguments:
         data_file -- data file name
 
         """
-        self.plot_data = np.genfromtxt(data_file, dtype=int, delimiter=',')
+        self.plot_data = np.genfromtxt(data_file, dtype=int, delimiter=',', skip_header=1)
 
     def count(self):
         """Returns total amount of data (number of rows)."""

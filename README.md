@@ -180,12 +180,13 @@ Data file has to be in CSV (Comma separated Values) format where first column
 contains list of years and following columns contain individual datasets that
 are supposed to be visualized in single plot.  Order and total count of datasets
 has to match the ordered lists defined by `barcolors` and `legend` metadata
-keys.
+keys.  The first line of the data file (the CSV header) is ignored.
 
 
 #### Example data file
 
 ```
+Year,Scopus,WoS
 2000,33,12
 2001,63,84
 2002,50,17
