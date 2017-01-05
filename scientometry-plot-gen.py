@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 #
 # scientometry-plot-gen.py -- A scientometric plot generator script.
 #n
-# Copyright (C) 2016  Juraj Szász <juraj.szasz3@gmail.com>
+# Copyright (C) 2016, 2017  Juraj Szász <juraj.szasz3@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -51,14 +51,14 @@ import numpy as np
 from matplotlib import rc
 import matplotlib.pyplot as plt
 
-__version__ = "0.1"
+__version__ = "0.2"
 
 
 CM_PER_INCH = 2.54
 """Unit conversion constant (centimeters per inch)."""
 
 
-class PlotMetadata:
+class PlotMetadata(object):
 
     """Metadata container for a single plot.
 
@@ -127,7 +127,7 @@ class PlotMetadata:
         self.barwidth = plot_metadata['barwidth']
 
 
-class MetadataFileParser:
+class MetadataFileParser(object):
 
     """Metadata YAML file parser.
 
@@ -185,7 +185,7 @@ class MetadataFileParser:
             return self.plot_metadata_dict.values()
 
 
-class PlotData:
+class PlotData(object):
 
     """Data container for a single plot.
 
@@ -228,7 +228,7 @@ class PlotData:
         return self.plot_data[:, 1:].transpose()
 
 
-class Plot:
+class Plot(object):
 
     """Wrapper class for rendering a single plot using matplotlib.
 
