@@ -52,7 +52,7 @@ import numpy as np
 from matplotlib import rc
 import matplotlib.pyplot as plt
 
-__version__ = "0.2"
+__version__ = "0.3"
 
 
 CM_PER_INCH = 2.54
