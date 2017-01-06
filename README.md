@@ -22,28 +22,29 @@ Following subsections describe how to install the dependency packages.
 
 ### Fedora
 
-    $ sudo dnf install -y python-matplotlib python-yaml
+    $ sudo dnf install -y python-matplotlib python-yaml python-unicodecsv
 
 
 ### CentOS/RHEL
 
     $ sudo yum install -y python-matplotlib python-yaml
+    $ sudo pip install unicodecsv
 
 
 ### Ubuntu/Debian
 
-    $ sudo apt-get install python-matplotlib python-yaml
+    $ sudo apt-get install python-matplotlib python-yaml python-unicodecsv
 
 
 ### Other Linux distro, Apple macOS, Other UNIX-like OS
 
-    $ sudo pip install matplotlib pyyaml
+    $ sudo pip install matplotlib pyyaml unicodecsv
 
 
 ### MS Windows
 
     > python -m pip install -U pip setuptools
-    > python -m pip install matplotlib pyyaml
+    > python -m pip install matplotlib pyyaml unicodecsv
 
 
 ## Synopsis
@@ -180,7 +181,8 @@ Data file has to be in CSV (Comma separated Values) format where first column
 contains list of years and following columns contain individual datasets that
 are supposed to be visualized in single plot.  Order and total count of datasets
 has to match the ordered lists defined by `barcolors` and `legend` metadata
-keys.  The first line of the data file (the CSV header) is ignored.
+keys.  The first line of the data file contains CSV header, describing contents
+of all data fields.  Actual contents of the header are currently not being used.
 
 
 #### Example data file
@@ -212,7 +214,7 @@ See [`fns-citations.csv`](examples/fns-citations.csv).
 
 scientometry-plot-gen.py -- Scientometric plot generator
 
-Copyright (C) 2016  Juraj Szasz (<juraj.szasz3@gmail.com>)
+Copyright (C) 2016, 2017  Juraj Szasz (<juraj.szasz3@gmail.com>)
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
