@@ -220,15 +220,16 @@ class PlotData(object):
         """
         with open(data_file, 'r') as csv_file:
             csv_reader = unicodecsv.reader(csv_file, encoding='utf-8-sig')
-            dataset_labels = csv_reader.next()[1:]
+            dataset_names = csv_reader.next()[1:]
 
-            xtick_labels = []
+            xtick_names = []
+            data = []
             for row in csv_reader:
-                xtick_labels.append(row[0])
-                data = [float(x) for x in row[1:]]
+                xtick_names.append(row[0])
+                data.append([float(x) for x in row[1:]])
 
-        self.dataset_labels = dataset_labels
-        self.xtick_labels = xtick_labels
+        self.dataset_names = dataset_names
+        self.xtick_names = xtick_names
         self.plot_data = np.array(data)
 
     def count(self):
