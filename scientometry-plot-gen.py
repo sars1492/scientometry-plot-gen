@@ -47,6 +47,7 @@ from __future__ import unicode_literals
 from __future__ import division
 import argparse
 import yaml
+import unicodecsv
 import numpy as np
 from matplotlib import rc
 import matplotlib.pyplot as plt
@@ -189,44 +190,58 @@ class PlotData(object):
 
     """Data container for a single plot.
 
-    Parses plot data file into a numpy array ('plot_data') that contains all
-    data for a single plot.  Data are saved in a matrix (X, Y1, Y2, ...), where
-    first column contains vector of X values and every other column contains
-    vector of Y values for individual datasets.
+    Parses CSV plot data file and extracts list of dataset labels
+    ('dataset_labels'), list of xtick_labels ('xtick_labels') and numpy array of
+    the actual data ('plot_data').  Data are saved in a matrix (Y1, Y2, ...),
+    where each column contains a vector of Y values for individual dataset.  The
+    column order matches the order of 'dataset_labels' entries.
 
     Attributes:
     plot_data -- numpy array containing data for a single plot
+    dataset_names -- list of dataset names (data column headers)
+    xtick_names -- list of x-tick names (data row labels)
 
     """
 
     def __init__(self, data_file):
         """Parse data file and initialze PlotData object.
 
-        Uses numpy.genfromtxt() function to parse given CSV file ('data_file')
-        and extract its contents into 'plot_data' attribute.  The first line of
-        the CSV file will be skipped.
+        Uses unicodecsv.reader to parse given CSV file ('data_file') and
+        extracts its contents into 'plot_data', 'dataset_names' and
+        'xtick_names' attributes.  The first line of CSV file is interpreted as
+        data header and the headers of the data columns (i.e. all but first
+        column) are saved into 'dataset_names'.  List of string values in the
+        first column are saved into 'xtick_names'.  Data values are converted
+        into float and then saved as numpy array.
 
         Positional arguments:
         data_file -- data file name
 
         """
-        self.plot_data = np.genfromtxt(data_file, dtype=int, delimiter=',', skip_header=1)
+        with open(data_file, 'r') as csv_file:
+            csv_reader = unicodecsv.reader(csv_file, encoding='utf-8-sig')
+            dataset_labels = csv_reader.next()[1:]
+
+            xtick_labels = []
+            for row in csv_reader:
+                xtick_labels.append(row[0])
+                data = [float(x) for x in row[1:]]
+
+        self.dataset_labels = dataset_labels
+        self.xtick_labels = xtick_labels
+        self.plot_data = np.array(data)
 
     def count(self):
         """Returns total amount of data (number of rows)."""
         return self.plot_data.shape[0]
 
     def dataset_count(self):
-        """Returns total amount of datasets (number of columns - 1)."""
-        return self.plot_data.shape[1] - 1
-
-    def get_x(self):
-        """Returns list of x values."""
-        return self.plot_data[:, 0]
+        """Returns total amount of datasets (number of columns)."""
+        return self.plot_data.shape[1]
 
     def get_y(self):
         """Returns list of lists of y values."""
-        return self.plot_data[:, 1:].transpose()
+        return self.plot_data.transpose()
 
 
 class Plot(object):
@@ -260,8 +275,8 @@ class Plot(object):
         Uses matplotlib to render a fancy scientometric bar chart based on the
         'metadata' and 'data' attributes.  The bar chart is now optimized for
         two datasets; nevertheless, it can be easily tweaked to any number of
-        datasets.  The figure supreme title and tick labels of x-axis ('year')
-        are formatted in bold font because it just looks cool.  Note that the
+        datasets.  The figure supreme title and tick labels of x-axis are
+        formatted in bold font because it just looks cool.  Note that the
         maximal value of the y-axis range is not calculated by this method.  You
         need to set it explicitly for each plot using 'ymax' parameter.
 
@@ -283,7 +298,6 @@ class Plot(object):
         width = self.metadata.barwidth        # width of a bar (in x-axis units)
         group_width = dataset_count*width     # width of a group of bars
         right_edge = len(ind)-1 + group_width # right edge of last plotted bar
-        X = self.data.get_x()                 # vector of years (x-axis)
         Y = self.data.get_y()                 # matrix of datasets
 
         # Create bars and legend handles for individual datasets
@@ -297,7 +311,7 @@ class Plot(object):
         ax.set_xlim(-group_width/2, right_edge + group_width/2)
         ax.set_xticks(ind + group_width/2)
 
-        xtick_names = ax.set_xticklabels([str(year) for year in X])
+        xtick_names = ax.set_xticklabels(self.data.xtick_names)
         plt.setp(xtick_names, fontsize=self.metadata.ticklabel_fontsize, fontweight='bold')
 
         # Set y-axis ticks and labels
