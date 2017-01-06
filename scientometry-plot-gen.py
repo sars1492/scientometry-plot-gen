@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 #
 # scientometry-plot-gen.py -- A scientometric plot generator script.
 #n
-# Copyright (C) 2016  Juraj Szász <juraj.szasz3@gmail.com>
+# Copyright (C) 2016, 2017  Juraj Szász <juraj.szasz3@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -44,20 +44,21 @@ plots via PLOT argument(s). This comes very handy when using tab completititon.
 """
 
 from __future__ import unicode_literals
+from __future__ import division
 import argparse
 import yaml
 import numpy as np
 from matplotlib import rc
 import matplotlib.pyplot as plt
 
-__version__ = "0.1"
+__version__ = "0.2"
 
 
 CM_PER_INCH = 2.54
 """Unit conversion constant (centimeters per inch)."""
 
 
-class PlotMetadata:
+class PlotMetadata(object):
 
     """Metadata container for a single plot.
 
@@ -126,7 +127,7 @@ class PlotMetadata:
         self.barwidth = plot_metadata['barwidth']
 
 
-class MetadataFileParser:
+class MetadataFileParser(object):
 
     """Metadata YAML file parser.
 
@@ -184,7 +185,7 @@ class MetadataFileParser:
             return self.plot_metadata_dict.values()
 
 
-class PlotData:
+class PlotData(object):
 
     """Data container for a single plot.
 
@@ -202,13 +203,14 @@ class PlotData:
         """Parse data file and initialze PlotData object.
 
         Uses numpy.genfromtxt() function to parse given CSV file ('data_file')
-        and extract its contents into 'plot_data' attribute.
+        and extract its contents into 'plot_data' attribute.  The first line of
+        the CSV file will be skipped.
 
         Positional arguments:
         data_file -- data file name
 
         """
-        self.plot_data = np.genfromtxt(data_file, dtype=int, delimiter=',')
+        self.plot_data = np.genfromtxt(data_file, dtype=int, delimiter=',', skip_header=1)
 
     def count(self):
         """Returns total amount of data (number of rows)."""
@@ -227,7 +229,7 @@ class PlotData:
         return self.plot_data[:, 1:].transpose()
 
 
-class Plot:
+class Plot(object):
 
     """Wrapper class for rendering a single plot using matplotlib.
 
@@ -276,21 +278,25 @@ class Plot:
         ax.set_title(self.metadata.title, fontsize=self.metadata.title_fontsize, y=self.metadata.title_y)
 
         # Define helper variables
-        ind = np.arange(self.data.count())  # tick indices for x-axis
-        width = self.metadata.barwidth      # width of bars (in x-axis units)
-        X = self.data.get_x()               # vector of years (x-axis)
-        Y = self.data.get_y()               # matrix of datasets
+        dataset_count = self.data.dataset_count()
+        ind = np.arange(self.data.count())    # tick indices for x-axis
+        width = self.metadata.barwidth        # width of a bar (in x-axis units)
+        group_width = dataset_count*width     # width of a group of bars
+        right_edge = len(ind)-1 + group_width # right edge of last plotted bar
+        X = self.data.get_x()                 # vector of years (x-axis)
+        Y = self.data.get_y()                 # matrix of datasets
 
         # Create bars and legend handles for individual datasets
         legend_handles = []
-        for i in xrange(self.data.dataset_count()):
+        for i in xrange(dataset_count):
             bar = ax.bar(ind + i*width, Y[i], width, color=self.metadata.barcolors[i])
             legend_handles.append(bar[0])
 
         # Set x-axis ticks and labels
         ax.set_xlabel(self.metadata.xlabel, fontsize=self.metadata.axislabel_fontsize)
-        ax.set_xlim(-width, len(ind)+width)
-        ax.set_xticks(ind+width)
+        ax.set_xlim(-group_width/2, right_edge + group_width/2)
+        ax.set_xticks(ind + group_width/2)
+
         xtick_names = ax.set_xticklabels([str(year) for year in X])
         plt.setp(xtick_names, fontsize=self.metadata.ticklabel_fontsize, fontweight='bold')
 
