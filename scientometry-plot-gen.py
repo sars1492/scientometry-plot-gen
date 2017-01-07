@@ -284,6 +284,7 @@ class Plot(object):
         """
         # Set global font family
         rc('font', family='Liberation Sans')
+        rc('mathtext', fontset='stixsans')
 
         # Initialize figure object
         fig = plt.figure(figsize=self.metadata.figsize)
