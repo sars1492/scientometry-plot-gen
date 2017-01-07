@@ -52,7 +52,7 @@ import numpy as np
 from matplotlib import rc
 import matplotlib.pyplot as plt
 
-__version__ = "0.4"
+__version__ = "0.5"
 
 
 CM_PER_INCH = 2.54
@@ -81,7 +81,7 @@ class PlotMetadata(object):
     ylabel -- label of the y-axis
     axislabel_fontsize -- font size of the axis labels (in pt)
     ticklabel_fontsize -- font size of the tick labels (in pt)
-    ymax -- maximal value of the y-axis range
+    ymax -- maximal value of the y-axis range ('best' for dynamic y-axis range)
     legend -- list of dataset labels in the legend box
     legend_fontsize -- font size of the dataset labels in legend box (in pt)
     legend_loc -- legend box location ('right', 'center left', 'upper right',
@@ -240,6 +240,10 @@ class PlotData(object):
         """Returns total amount of datasets (number of columns)."""
         return self.plot_data.shape[1]
 
+    def max_value(self):
+        """Returns maximal value of all plot data."""
+        return np.amax(self.plot_data)
+
     def get_y(self):
         """Returns list of lists of y values."""
         return self.plot_data.transpose()
@@ -318,7 +322,8 @@ class Plot(object):
 
         # Set y-axis ticks and labels
         ax.set_ylabel(self.metadata.ylabel, fontsize=self.metadata.axislabel_fontsize)
-        ax.set_ylim(0, self.metadata.ymax)
+        ymax = 1.05*self.data.max_value() if self.metadata.ymax == "best" else self.metadata.ymax
+        ax.set_ylim(0, ymax)
         plt.tick_params(labelsize=self.metadata.ticklabel_fontsize)
 
         # Add grid

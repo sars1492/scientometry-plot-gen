@@ -18,10 +18,11 @@ defaults:
   legend:
     - Scopus
     - WoS
-  xlabel: Year of Publishing
+  ymax: best
 
 fns-citations:
   suptitle: Faculty of Natural Sciences
   title: Citations over 2000-2016
+  xlabel: Year of Publishing
   ylabel: Citation Count
   ymax: 320
