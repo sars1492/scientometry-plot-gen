@@ -219,6 +219,8 @@ class PlotData(object):
 
         """
         with open(data_file, 'r') as csv_file:
+            # The 'utf-8-sig' encoding is required, because some input CSV files
+            # contain CSV preamble (for UTF-8) that has to be ignored.
             csv_reader = unicodecsv.reader(csv_file, encoding='utf-8-sig')
             dataset_names = csv_reader.next()[1:]
 
