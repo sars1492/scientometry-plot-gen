@@ -304,7 +304,6 @@ class Plot(object):
         width = self.metadata.barwidth        # width of a bar (in x-axis units)
         group_width = dataset_count*width     # width of a group of bars
         right_edge = len(ind)-1 + group_width # right edge of last plotted bar
-        ymax = self.data.max_value()          # maximal y value
         Y = self.data.get_y()                 # matrix of datasets
 
         # Create bars and legend handles for individual datasets
@@ -323,8 +322,8 @@ class Plot(object):
 
         # Set y-axis ticks and labels
         ax.set_ylabel(self.metadata.ylabel, fontsize=self.metadata.axislabel_fontsize)
-        max_ylim = 1.05*ymax if self.metadata.ymax == "best" else self.metadata.ymax
-        ax.set_ylim(0, max_ylim)
+        ymax = 1.05*self.data.max_value() if self.metadata.ymax == "best" else self.metadata.ymax
+        ax.set_ylim(0, ymax)
         plt.tick_params(labelsize=self.metadata.ticklabel_fontsize)
 
         # Add grid
