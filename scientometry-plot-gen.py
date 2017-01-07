@@ -52,7 +52,7 @@ import numpy as np
 from matplotlib import rc
 import matplotlib.pyplot as plt
 
-__version__ = "0.3"
+__version__ = "0.4"
 
 
 CM_PER_INCH = 2.54
@@ -284,6 +284,7 @@ class Plot(object):
         """
         # Set global font family
         rc('font', family='Liberation Sans')
+        rc('mathtext', fontset='stixsans')
 
         # Initialize figure object
         fig = plt.figure(figsize=self.metadata.figsize)
