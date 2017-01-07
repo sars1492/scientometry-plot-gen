@@ -137,7 +137,7 @@ Metadata key | Description
 `title_y` | Vertical shift of the plot title (relatively to the plot border)
 `xlabel` | Label of the x-axis
 `ylabel` | Label of the y-axis
-`ymax` | Maximal value of y-axis.
+`ymax` | Maximal value of y-axis (`best` for dynamic y-axis range)
 
 
 #### Example metadata file
@@ -163,11 +163,12 @@ defaults:
   legend:
     - Scopus
     - WoS
-  xlabel: Year of Publishing
+  ymax: best
 
 all-citations:
   suptitle: Faculty of Natural Sciences
   title: Citations over 2000-2016
+  xlabel: Year of Publishing
   ylabel: Citation Count
   ymax: 320
 ```
