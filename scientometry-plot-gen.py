@@ -53,7 +53,6 @@ import locale
 import matplotlib
 import matplotlib.pyplot as plt
 
-
 # locale.setlocale function in Python 2.7 does not work well with Unicode
 # literals--the string in the argument has to be explicitly encoded into ASCII.
 locale.setlocale(locale.LC_NUMERIC, "sk_SK.utf-8".encode("ascii"))
@@ -61,8 +60,7 @@ matplotlib.rcParams['font.family'] = "Liberation Sans"
 matplotlib.rcParams['mathtext.fontset'] = "stixsans"
 matplotlib.rcParams['axes.formatter.use_locale'] = True
 
-
-__version__ = "0.6"
+__version__ = "0.7"
 
 
 CM_PER_INCH = 2.54
