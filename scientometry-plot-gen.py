@@ -49,10 +49,20 @@ import argparse
 import yaml
 import unicodecsv
 import numpy as np
-from matplotlib import rc
+import locale
+import matplotlib
 import matplotlib.pyplot as plt
 
-__version__ = "0.5"
+
+# locale.setlocale function in Python 2.7 does not work well with Unicode
+# literals--the string in the argument has to be explicitly encoded into ASCII.
+locale.setlocale(locale.LC_NUMERIC, "sk_SK.utf-8".encode("ascii"))
+matplotlib.rcParams['font.family'] = "Liberation Sans"
+matplotlib.rcParams['mathtext.fontset'] = "stixsans"
+matplotlib.rcParams['axes.formatter.use_locale'] = True
+
+
+__version__ = "0.6"
 
 
 CM_PER_INCH = 2.54
@@ -219,6 +229,8 @@ class PlotData(object):
 
         """
         with open(data_file, 'r') as csv_file:
+            # The 'utf-8-sig' encoding is required, because some input CSV files
+            # contain CSV preamble (for UTF-8) that has to be ignored.
             csv_reader = unicodecsv.reader(csv_file, encoding='utf-8-sig')
             dataset_names = csv_reader.next()[1:]
 
@@ -286,10 +298,6 @@ class Plot(object):
         need to set it explicitly for each plot using 'ymax' parameter.
 
         """
-        # Set global font family
-        rc('font', family='Liberation Sans')
-        rc('mathtext', fontset='stixsans')
-
         # Initialize figure object
         fig = plt.figure(figsize=self.metadata.figsize)
         fig.suptitle(self.metadata.suptitle, fontsize=self.metadata.suptitle_fontsize, fontweight='bold')
@@ -356,6 +364,7 @@ def main():
              "plots via PLOT argument(s).  This comes very handy when " + \
              "using tab completititon."
     arg_parser = argparse.ArgumentParser(description=description, epilog=epilog)
+    arg_parser.add_argument('-v', '--version', action='version', version='%(prog)s ' + __version__)
     arg_parser.add_argument("-m", metavar="MEATADATA_FILE", dest='metadata_file', default="plot-metadata.yaml",
                             help="load metadata from METADATA_FILE")
     arg_parser.add_argument("plots", metavar="PLOT", nargs='*',
