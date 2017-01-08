@@ -10,95 +10,95 @@ defaults:
   axislabel_fontsize: 11
   legend_fontsize: 11
   legend_loc: best
+  suptitle: ''
+  xlabel: Katedra
   title_y: 1.004
-  barwidth: 0.3
+  barwidth: 0.2
   barcolors:
     - blue
     - red
+    - green
   legend:
     - Scopus
     - WoS
+    - GS
+  ymax: best
+
+all-publications-data:
+  title: Vývoj publikačnej činnosti FPV UCM v období 2000-2016
   xlabel: Rok publikovania
-
-# Katedra biológie
-bio-citations:
-  suptitle: Katedra biológie
-  title: Citovanosť článkov publikovaných v období 2000-2016
-  ylabel: Počet citácií
-  ymax: 90
-
-bio-publications:
-  suptitle: Katedra biológie
-  title: Vývoj publikačnej činnosti v období 2000-2016
   ylabel: Počet publikácií
-  ymax: 6.2
+  barwidth: 0.3
   legend_loc: upper left
+  legend:
+    - Scopus
+    - WoS
 
-# Katedra biotechnológií
-biotech-citations:
-  suptitle: Katedra biotechnológií
-  title: Citovanosť článkov publikovaných v období 2000-2016
+all-citations-data:
+  title: Citovanosť publikácii FPV UCM v období 2000-2016
+  xlabel: Rok publikovania
   ylabel: Počet citácií
-  ymax: 90
+  barwidth: 0.3
+  ymax: 350
+  legend:
+    - Scopus
+    - WoS
 
-biotech-publications:
-  suptitle: Katedra biotechnológií
-  title: Vývoj publikačnej činnosti v období 2000-2016
+results-data-papers:
+  title:  Celkový počet publikácií jednotlivých katedier FPV UCM
   ylabel: Počet publikácií
-  ymax: 14.5
-  legend_loc: upper left
 
-# Katedra chémie
-chem-citations:
-  suptitle: Katedra chémie
-  title: Citovanosť článkov publikovaných v období 2000-2016
+results-data-citations:
+  title:  Celkový počet citácií jednotlivých katedier FPV UCM
   ylabel: Počet citácií
-  ymax: 250
 
-chem-publications:
-  suptitle: Katedra chémie
-  title: Vývoj publikačnej činnosti v období 2000-2016
-  ylabel: Počet publikácií
-  ymax: 35
-  legend_loc: upper left
+results-data-papers_author:
+  title: Medián počtu publikácií na autora pre jednotlivé katedry FPV UCM
+  ylabel: Medián počtu publikácií na autora
 
-# Katedra ekochémie a rádioekológie
-eco-citations:
-  suptitle: Katedra ekochémie a rádioekológie
-  title: Citovanosť článkov publikovaných v období 2000-2016
-  ylabel: Počet citácií
-  ymax: 60
+results-data-cites_paper:
+  title: Medián citácií na publikáciu pre jednotlivé katedry FPV UCM
+  ylabel: Medián citácií na publikáciu
 
-eco-publications:
-  suptitle: Katedra ekochémie a rádioekológie
-  title: Vývoj publikačnej činnosti v období 2000-2016
-  ylabel: Počet publikácií
-  ymax: 10.5
-  legend_loc: upper left
+results-data-e_index:
+  title: Medián $e$-indexu pre jednotlivé katedry FPV UCM
+  ylabel: Medián $e$-indexu
+  ymax: 14
 
-# Katedra aplikovanej informatiky a matematiky
-inf-citations:
-  suptitle: Katedra aplikovanej informatiky a matematiky
-  title: Citovanosť článkov publikovaných v období 2000-2016
-  ylabel: Počet citácii
-  ymax: 10.5
+results-data-h_index:
+  title: Medián $h$-indexu pre jednotlivé katedry FPV UCM
+  ylabel: Medián $h$-indexu
+  ymax: 12
 
-inf-publications:
-  suptitle: Katedra aplikovanej informatiky a matematiky
-  title: Vývoj publikačnej činnosti v období 2000-2016
-  ylabel: Počet publikácií
+results-data-g_index:
+  title: Medián $g$-indexu pre jednotlivé katediry FPV UCM
+  ylabel: Medián $g$-indexu
+  ymax: 20
+
+results-data-hi_index:
+  title: Medián $h_{\mathrm{I}}$-indexu pre jednotlivé katedry FPV UCM
+  ylabel: Medián $h_{\mathrm{I}}$-indexu
+
+results-data-hi_norm:
+  title: Medián $h_{\mathrm{I, norm}}$ pre jednotlivé katedry FPV UCM
+  ylabel: Medián $h_{\mathrm{I, norm}}$
+
+results-data-awcr:
+  title: Medián AWCR pre jednotlivé katedry FPV UCM
+  ylabel: Medián AWCR
+  ymax: 100
+
+results-data-aw_index:
+  title: Medián $\mathit{AW}$-indexu pre jednotlivé katedry FPV UCM
+  ylabel: Medián $\mathit{AW}$-indexu
+  ymax: 10
+
+results-data-hc_index:
+  title: 'Medián $h^{\mathrm{c}}\!$-indexu pre jednotlivé katedry FPV UCM'
+  ylabel: 'Medián $h^{\mathrm{c}}\!$-indexu'
+  ymax: 10
+
+results-data-hm_index:
+  title: Medián $h_{\mathrm{m}}$-indexu pre jednotlivé katedry FPV UCM
+  ylabel: Medián $h_{\mathrm{m}}$-indexu
   ymax: 5
-
-# Fakulta prírodných vied
-all-citations:
-  suptitle: Fakulta prírodných vied
-  title: Citovanosť článkov publikovaných v období 2000-2016
-  ylabel: Počet citácií
-  ymax: 320
-
-all-publications:
-  suptitle: Fakulta prírodných vied
-  title: Vývoj publikačnej činnosti v období 2000-2016
-  ylabel: Počet publikácií
-  ymax: 60
-  legend_loc: upper left
