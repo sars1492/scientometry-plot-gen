@@ -25,7 +25,7 @@ defaults:
   ymax: best
 
 all-publications-data:
-  title: Vývoj publikačnej činnosti FPV UCM v období 2000-2016
+  title: Vývoj publikačnej činnosti FPV v období 2000-2016
   xlabel: Rok publikovania
   ylabel: Počet publikácií
   barwidth: 0.3
@@ -35,7 +35,7 @@ all-publications-data:
     - WoS
 
 all-citations-data:
-  title: Citovanosť publikácii FPV UCM v období 2000-2016
+  title: Citovanosť publikácii FPV v období 2000-2016
   xlabel: Rok publikovania
   ylabel: Počet citácií
   barwidth: 0.3
@@ -45,60 +45,60 @@ all-citations-data:
     - WoS
 
 results-data-papers:
-  title:  Celkový počet publikácií jednotlivých katedier FPV UCM
+  title:  Celkový počet publikácií jednotlivých katedier FPV
   ylabel: Počet publikácií
 
 results-data-citations:
-  title:  Celkový počet citácií jednotlivých katedier FPV UCM
+  title:  Celkový počet citácií jednotlivých katedier FPV
   ylabel: Počet citácií
 
 results-data-papers_author:
-  title: Medián počtu publikácií na autora pre jednotlivé katedry FPV UCM
+  title: Medián počtu publikácií na autora pre jednotlivé katedry FPV
   ylabel: Medián počtu publikácií na autora
 
 results-data-cites_paper:
-  title: Medián citácií na publikáciu pre jednotlivé katedry FPV UCM
+  title: Medián citácií na publikáciu pre jednotlivé katedry FPV
   ylabel: Medián citácií na publikáciu
 
 results-data-e_index:
-  title: Medián $e$-indexu pre jednotlivé katedry FPV UCM
+  title: Medián $e$-indexu pre jednotlivé katedry FPV
   ylabel: Medián $e$-indexu
   ymax: 14
 
 results-data-h_index:
-  title: Medián $h$-indexu pre jednotlivé katedry FPV UCM
+  title: Medián $h$-indexu pre jednotlivé katedry FPV
   ylabel: Medián $h$-indexu
   ymax: 12
 
 results-data-g_index:
-  title: Medián $g$-indexu pre jednotlivé katediry FPV UCM
+  title: Medián $g$-indexu pre jednotlivé katediry FPV
   ylabel: Medián $g$-indexu
   ymax: 20
 
 results-data-hi_index:
-  title: Medián $h_{\mathrm{I}}$-indexu pre jednotlivé katedry FPV UCM
+  title: Medián $h_{\mathrm{I}}$-indexu pre jednotlivé katedry FPV
   ylabel: Medián $h_{\mathrm{I}}$-indexu
 
 results-data-hi_norm:
-  title: Medián $h_{\mathrm{I, norm}}$ pre jednotlivé katedry FPV UCM
+  title: Medián $h_{\mathrm{I, norm}}$ pre jednotlivé katedry FPV
   ylabel: Medián $h_{\mathrm{I, norm}}$
 
 results-data-awcr:
-  title: Medián AWCR pre jednotlivé katedry FPV UCM
+  title: Medián AWCR pre jednotlivé katedry FPV
   ylabel: Medián AWCR
   ymax: 100
 
 results-data-aw_index:
-  title: Medián $\mathit{AW}$-indexu pre jednotlivé katedry FPV UCM
+  title: Medián $\mathit{AW}$-indexu pre jednotlivé katedry FPV
   ylabel: Medián $\mathit{AW}$-indexu
   ymax: 10
 
 results-data-hc_index:
-  title: 'Medián $h^{\mathrm{c}}\!$-indexu pre jednotlivé katedry FPV UCM'
+  title: 'Medián $h^{\mathrm{c}}\!$-indexu pre jednotlivé katedry FPV'
   ylabel: 'Medián $h^{\mathrm{c}}\!$-indexu'
   ymax: 10
 
 results-data-hm_index:
-  title: Medián $h_{\mathrm{m}}$-indexu pre jednotlivé katedry FPV UCM
+  title: Medián $h_{\mathrm{m}}$-indexu pre jednotlivé katedry FPV
   ylabel: Medián $h_{\mathrm{m}}$-indexu
   ymax: 5
