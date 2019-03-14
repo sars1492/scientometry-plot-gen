@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # scientometry-plot-gen.py -- A scientometric plot generator script.
-#n
+#
 # Copyright (C) 2016, 2017  Juraj Szász <juraj.szasz3@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify it under
@@ -306,11 +306,11 @@ class Plot(object):
 
         # Define helper variables
         dataset_count = self.data.dataset_count()
-        ind = np.arange(self.data.count())    # tick indices for x-axis
-        width = self.metadata.barwidth        # width of a bar (in x-axis units)
-        group_width = dataset_count*width     # width of a group of bars
-        right_edge = len(ind)-1 + group_width # right edge of last plotted bar
-        Y = self.data.get_y()                 # matrix of datasets
+        ind = np.arange(self.data.count())     # tick indices for x-axis
+        width = self.metadata.barwidth         # width of a bar (x-axis units)
+        group_width = dataset_count*width      # width of a group of bars
+        right_edge = len(ind)-1 + group_width  # right edge of last plotted bar
+        Y = self.data.get_y()                  # matrix of datasets
 
         # Create bars and legend handles for individual datasets
         legend_handles = []
